@@ -25,57 +25,6 @@ $(document).ready(
 );
 </script>
 
-<!-- Begining of the ajax code to determine what teams are possible based on match. see the teams.php for more info -->
-<script>
-//declare team num zone variables
-var r1;
-var r2;
-var r3;
-var b1;
-var b2;
-var b3;
-
-//handle the submitting of the match to the php file
-function getteam(str)
-{
-var xmlhttp;
-if (str.length==0)
-  {
-  document.getElementById("txtHint").innerHTML="";
-  return;
-  }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    //break apart the string we recieve and apply it to the team zone variables
-r1=xmlhttp.responseText.substring(0,4);
-r2=xmlhttp.responseText.substring(5,9);
-r3=xmlhttp.responseText.substring(10,14);
-b1=xmlhttp.responseText.substring(15,19);
-b2=xmlhttp.responseText.substring(20,24);
-b3=xmlhttp.responseText.substring(25,29);
-robot();
-//handle setting the match to what is in the match field
-localStorage.matchnum = document.getElementById("matchid").value;
-localStorage.zone = document.getElementById("robot").value;
-    }
-  }
-xmlhttp.open("POST","teams.php?q="+str,true);
-xmlhttp.send();
-}
-
-
-</script>
-
 </head>
 
 
